@@ -111,8 +111,12 @@ function generateShortCode(storeId, transactionId) {
     if (transactionIdString.length === 5) {
 
         // if the transactionId is of length 5 which is (10,000) then we are
-        // using string "2710" just for the transactionId 10,000.
-        transactionCode = "2710";
+        // mapping the first two digit 10 using the mapping array and 
+        // the left out position will be filled using the 0th index of mapping array.
+        const firstCodeIndex = parseInt(transactionIdString.slice(0,2));
+
+        transactionCode = 
+        mapping[firstCodeIndex] + "RRR";
 
     } else if (transactionIdString.length === 4) {
 
@@ -203,25 +207,17 @@ function decodeShortCode(shortCode) {
 
     // getting the index from the mapping array to get the storeId. 
     storeId = parseInt(mapping.indexOf(storeCode[0]).toString() + mapping.indexOf(storeCode[1]).toString());
+   
 
+    // getting the index from the mapping array to construct the
+    // transactionId.
+    const first = mapping.indexOf(transactionCode[0]).toString();
+    const second = mapping.indexOf(transactionCode[1]).toString();
+    const third = mapping.indexOf(transactionCode[2]).toString();
+    const fourth = mapping.indexOf(transactionCode[3]).toString();
 
-    if (transactionCode === "2710") {
+    transactionId = parseInt(`${first}${second}${third}${fourth}`);
 
-        // if the transactionCode is equal to "2710" the transactionId is the max
-        // number which is 10,000.
-        transactionId = 10000
-    } else {
-
-        // getting the index from the mapping array to construct the
-        // transactionId.
-        const first = mapping.indexOf(transactionCode[0]).toString();
-        const second = mapping.indexOf(transactionCode[1]).toString();
-        const third = mapping.indexOf(transactionCode[2]).toString();
-        const fourth = mapping.indexOf(transactionCode[3]).toString();
-
-        transactionId = parseInt(`${first}${second}${third}${fourth}`);
-
-    }
 
     // Doing the same for Date getting the index from the mapping array.
     const day = mapping.indexOf(dateCode[0]);

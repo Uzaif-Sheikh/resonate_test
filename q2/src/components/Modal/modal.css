@@ -1,0 +1,42 @@
+.modal-container {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border: 2px solid #931639;
+}
+
+.modal-close {
+    margin: 5px;
+    padding: 8px;
+    cursor: pointer;
+    background-color: #931639;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    width: 30%;
+}
+
+.modal-footer {
+    margin-top: 14px;
+    display: flex;
+    flex-direction: row;
+}
+
+#modal-modal-title {
+    font-weight: bold;
+}
+
+#modal-modal-description {
+    color: #931639;
+}
+
+.modal-text-body {
+    font-weight: 400;
+    margin: 4px;
+}
+
+.modal-subheader {
+    display: flex;
+    align-items: center;
+}
