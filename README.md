@@ -8,3 +8,4 @@ To run the react app:
 
 > npm start
 ```
+Q2 Deployment link: [here](https://resonate-test-cyan.vercel.app/)
